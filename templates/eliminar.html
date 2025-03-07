@@ -2,6 +2,38 @@
 
 {% block content %}
 
+{% import "_macros.html" as macros %}
 
+<form class="max-w-md mx-auto" action="/eliminar" method="post">
+    {{ form.csrf_token }}
+    <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+    
+    <input type="hidden" name="id" value="{{ form.id.data }}">
+
+    <h2 class="text-lg font-semibold text-gray-900 dark:text-white text-center mb-4">
+        ¿Estás seguro que quieres eliminar a {{ form.nombre.data }} {{ form.apaterno.data }}?
+    </h2>
+
+    <div class="relative z-0 w-full mb-5 group">
+        {{ macros.camposNuevos(form.nombre, class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-red-500 focus:outline-none focus:ring-0 focus:border-red-600 peer") }}
+    </div>
+
+    <div class="relative z-0 w-full mb-5 group">
+        {{ macros.camposNuevos(form.apaterno, class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-red-500 focus:outline-none focus:ring-0 focus:border-red-600 peer") }}
+    </div>
+
+    <div class="relative z-0 w-full mb-5 group">
+        {{ macros.camposNuevos(form.email, class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-red-500 focus:outline-none focus:ring-0 focus:border-red-600 peer") }}
+    </div>
+
+    <div class="flex justify-between">
+        <a href="/" class="focus:outline-none text-white bg-gray-600 hover:bg-gray-700 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5">
+            No, Cancelar
+        </a>
+        <button type="submit" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5">
+            Sí, Eliminar
+        </button>
+    </div>
+</form>
 
 {% endblock %}

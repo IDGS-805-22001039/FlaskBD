@@ -1,5 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import Form, StringField,IntegerField, EmailField, validators
+from wtforms.validators import DataRequired, Length, Email, NumberRange
  
  
 class UserForm(Form):
